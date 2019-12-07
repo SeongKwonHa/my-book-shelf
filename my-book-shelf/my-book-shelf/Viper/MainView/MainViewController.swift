@@ -17,7 +17,7 @@ final class MainViewController: BaseViewController {
     self.view.addSubview(self.splashView)
     
     self.hideSplashView(delay: 2.0) {
-      self.presentNewBookListView()
+      self.presentTabBarController()
     }
   }
   
@@ -33,11 +33,15 @@ final class MainViewController: BaseViewController {
     }
   }
   
-  private func presentNewBookListView() {
-    let vc = NewBookListView()
-    vc.modalPresentationStyle = .fullScreen
-    vc.modalTransitionStyle = .crossDissolve
-    self.present(vc, animated: true, completion: nil)
+  private func presentTabBarController() {
+    let tabBarController = BaseTabBarController()
+    let newBookListView = NewBookListView()
+    let searchBookInfoView = SearchBookInfoView()
+    newBookListView.tabBarItem = BaseTabBarItem(title: "New", image: nil, selectedImage: nil)
+    searchBookInfoView.tabBarItem = BaseTabBarItem(title: "Search", image: nil, selectedImage: nil)
+    tabBarController.viewControllers = [newBookListView, searchBookInfoView]
+    
+    self.present(tabBarController, animated: true, completion: nil)
   }
 }
 
