@@ -9,7 +9,7 @@
 import SnapKit
 import Then
 
-class NewBookListView: BaseViewController {
+class NewBookListView: BaseViewController, NewBookListViewProtocol {
   let testView = UIView().then {
     $0.backgroundColor = .yellow
   }

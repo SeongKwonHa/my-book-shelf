@@ -7,17 +7,19 @@
 //
 
 protocol NewBookListViewProtocol: class {
-  
+  var presenter: NewBookListPresenterProtocol? { get set }
 }
 
 protocol NewBookListPresenterProtocol: class {
-  
+  var view: NewBookListViewProtocol? { get set }
+  var interactor: NewBookListInteractorProtocol? { get set }
+  var router: NewBookListRouterProtocol? { get set }
 }
 
 protocol NewBookListInteractorProtocol: class {
-  
+  var presenter: NewBookListPresenterProtocol? { get set }
 }
 
 protocol NewBookListRouterProtocol: class {
-  
+  func createModule() -> NewBookListView
 }

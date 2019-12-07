@@ -33,6 +33,9 @@
 		39C143A5239BDC4E0096305A /* NewBookListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C143A4239BDC4E0096305A /* NewBookListPresenter.swift */; };
 		39C143A7239BDC5A0096305A /* NewBookListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C143A6239BDC5A0096305A /* NewBookListInteractor.swift */; };
 		39C143A9239BDC6A0096305A /* NewBookListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C143A8239BDC6A0096305A /* NewBookListRouter.swift */; };
+		39C143AC239BE3660096305A /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C143AB239BE3660096305A /* BookModel.swift */; };
+		39C143AF239BE3FE0096305A /* EndPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C143AE239BE3FE0096305A /* EndPoints.swift */; };
+		39C143B1239BE9430096305A /* CustomErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39C143B0239BE9430096305A /* CustomErrors.swift */; };
 		3A7D22D2F90A1FCEF552748E /* Pods_my_book_shelfTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2B777CF15FD3456E060E274 /* Pods_my_book_shelfTests.framework */; };
 		D2364995DD8DCDCD15F0E7EB /* Pods_my_book_shelf_my_book_shelfUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 068419FD82D83EA931522139 /* Pods_my_book_shelf_my_book_shelfUITests.framework */; };
 		D611332786FFA474CC92B406 /* Pods_my_book_shelf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE68A371FB63227F879234B1 /* Pods_my_book_shelf.framework */; };
@@ -92,6 +95,9 @@
 		39C143A4239BDC4E0096305A /* NewBookListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookListPresenter.swift; sourceTree = "<group>"; };
 		39C143A6239BDC5A0096305A /* NewBookListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookListInteractor.swift; sourceTree = "<group>"; };
 		39C143A8239BDC6A0096305A /* NewBookListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookListRouter.swift; sourceTree = "<group>"; };
+		39C143AB239BE3660096305A /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
+		39C143AE239BE3FE0096305A /* EndPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoints.swift; sourceTree = "<group>"; };
+		39C143B0239BE9430096305A /* CustomErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomErrors.swift; sourceTree = "<group>"; };
 		6CEBFA9D916E4E2CE9A77BB7 /* Pods-my-book-shelf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-my-book-shelf.release.xcconfig"; path = "Target Support Files/Pods-my-book-shelf/Pods-my-book-shelf.release.xcconfig"; sourceTree = "<group>"; };
 		A2B777CF15FD3456E060E274 /* Pods_my_book_shelfTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_my_book_shelfTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D303FDCF9535ADB81DAD2AE0 /* Pods-my-book-shelf-my-book-shelfUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-my-book-shelf-my-book-shelfUITests.release.xcconfig"; path = "Target Support Files/Pods-my-book-shelf-my-book-shelfUITests/Pods-my-book-shelf-my-book-shelfUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -156,7 +162,9 @@
 				39C1430C239B8A8E0096305A /* SceneDelegate.swift */,
 				39C14313239B8A900096305A /* Assets.xcassets */,
 				39C14318239B8A900096305A /* Info.plist */,
+				39C143AD239BE3CF0096305A /* Commons */,
 				39C1437C239BABC20096305A /* Views */,
+				39C143AA239BE3020096305A /* Entities */,
 				39C14379239BAB540096305A /* Base */,
 				39C14381239BB4360096305A /* Viper */,
 			);
@@ -184,8 +192,8 @@
 		39C1433A239B992F0096305A /* NewBookList */ = {
 			isa = PBXGroup;
 			children = (
-				39C1433B239B9AAE0096305A /* NewBookListView.swift */,
 				39C143A2239BDC2E0096305A /* NewBookListProtocol.swift */,
+				39C1433B239B9AAE0096305A /* NewBookListView.swift */,
 				39C143A4239BDC4E0096305A /* NewBookListPresenter.swift */,
 				39C143A6239BDC5A0096305A /* NewBookListInteractor.swift */,
 				39C143A8239BDC6A0096305A /* NewBookListRouter.swift */,
@@ -226,10 +234,10 @@
 		39C14382239BBD280096305A /* SearchBookInfo */ = {
 			isa = PBXGroup;
 			children = (
+				39C14396239BDBD80096305A /* SearchBookInfoProtocol.swift */,
 				39C14383239BBD540096305A /* SearchBookInfoView.swift */,
 				39C14392239BDBC40096305A /* SearchBookInfoPresenter.swift */,
 				39C14394239BDBD00096305A /* SearchBookInfoInteractor.swift */,
-				39C14396239BDBD80096305A /* SearchBookInfoProtocol.swift */,
 				39C14398239BDBEE0096305A /* SearchBookInfoRouter.swift */,
 			);
 			path = SearchBookInfo;
@@ -246,13 +254,30 @@
 		39C1438F239BDADE0096305A /* DetailBook */ = {
 			isa = PBXGroup;
 			children = (
-				39C14390239BDAFA0096305A /* DetailbookView.swift */,
 				39C1439A239BDC010096305A /* DetailbookProtocol.swift */,
+				39C14390239BDAFA0096305A /* DetailbookView.swift */,
 				39C1439C239BDC0B0096305A /* DetailbookInteractor.swift */,
 				39C1439E239BDC140096305A /* DetailbookPresenter.swift */,
 				39C143A0239BDC220096305A /* DetailbookRouter.swift */,
 			);
 			path = DetailBook;
+			sourceTree = "<group>";
+		};
+		39C143AA239BE3020096305A /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				39C143AB239BE3660096305A /* BookModel.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		39C143AD239BE3CF0096305A /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				39C143AE239BE3FE0096305A /* EndPoints.swift */,
+				39C143B0239BE9430096305A /* CustomErrors.swift */,
+			);
+			path = Commons;
 			sourceTree = "<group>";
 		};
 		7E22E4B379DDD3334C830F19 /* Pods */ = {
@@ -521,6 +546,7 @@
 				39C1439F239BDC140096305A /* DetailbookPresenter.swift in Sources */,
 				39C1433C239B9AAE0096305A /* NewBookListView.swift in Sources */,
 				39C1438E239BD99A0096305A /* BaseTabBarController.swift in Sources */,
+				39C143AC239BE3660096305A /* BookModel.swift in Sources */,
 				39C1439B239BDC020096305A /* DetailbookProtocol.swift in Sources */,
 				39C1430F239B8A8E0096305A /* MainViewController.swift in Sources */,
 				39C14399239BDBEE0096305A /* SearchBookInfoRouter.swift in Sources */,
@@ -529,7 +555,9 @@
 				39C14393239BDBC40096305A /* SearchBookInfoPresenter.swift in Sources */,
 				39C14384239BBD540096305A /* SearchBookInfoView.swift in Sources */,
 				39C1430B239B8A8E0096305A /* AppDelegate.swift in Sources */,
+				39C143B1239BE9430096305A /* CustomErrors.swift in Sources */,
 				39C1430D239B8A8E0096305A /* SceneDelegate.swift in Sources */,
+				39C143AF239BE3FE0096305A /* EndPoints.swift in Sources */,
 				39C14397239BDBD80096305A /* SearchBookInfoProtocol.swift in Sources */,
 				39C14380239BAD8C0096305A /* BaseViewController.swift in Sources */,
 				39C143A9239BDC6A0096305A /* NewBookListRouter.swift in Sources */,
