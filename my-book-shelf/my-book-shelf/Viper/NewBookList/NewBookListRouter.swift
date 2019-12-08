@@ -7,5 +7,16 @@
 //
 
 class NewBookListRouter: NewBookListRouterProtocol {
-  
+  static func createModule() -> NewBookListViewController {
+    let viewController = NewBookListViewController()
+    let presenter = NewBookListPresenter()
+    let interactor = NewBookListInteractor()
+    let router = NewBookListRouter()
+    
+    viewController.interactor = interactor
+    viewController.router = router
+    interactor.presenter = presenter
+    presenter.viewController = viewController
+    return viewController
+  }
 }

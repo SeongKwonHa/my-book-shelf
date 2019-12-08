@@ -7,6 +7,7 @@
 //
 
 import ObjectMapper
+import RxSwift
 
 struct BookModel {
   var isbn13: String = ""
@@ -34,9 +35,9 @@ extension BookModel: Mappable {
   mutating func mapping(map: Map) {
     isbn13      <- map["isbn13"]
     title       <- map["title"]
-    subTitle    <- map["subTitle"]
+    subTitle    <- map["subtitle"]
     price       <- map["price"]
-    imageUrl    <- map["iamge"]
+    imageUrl    <- map["image"]
     url         <- map["url"]
     authors     <- map["authors"]
     publisher   <- map["publisher"]
@@ -46,5 +47,11 @@ extension BookModel: Mappable {
     rating      <- map["rating"]
     desc        <- map["desc"]
     pdf         <- map["pdf"]
+  }
+}
+
+extension BookModel {
+  static func getNewBookList() -> Observable<[BookModel]?> {
+    return NewBookListWorker.getNewBookList()
   }
 }

@@ -7,5 +7,9 @@
 //
 
 class NewBookListPresenter: NewBookListPresenterProtocol {
+  weak var viewController: NewBookListViewControllerProtocol?
   
+  func display(books: [BookModel]) {
+    self.viewController?.display(books: books)
+  }
 }

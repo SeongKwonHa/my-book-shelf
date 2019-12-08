@@ -2,25 +2,30 @@
 //  NewBookListView.swift
 //  my-book-shelf
 //
-//  Created by Jam on 2019/12/07.
+//  Created by Jam on 2019/12/08.
 //  Copyright © 2019 Jam. All rights reserved.
 //
 
 import SnapKit
 import Then
 
-class NewBookListView: BaseViewController, NewBookListViewProtocol {
-  let testView = UIView().then {
-    $0.backgroundColor = .yellow
+class NewBookListView: BaseView {
+  let tableView = UITableView(frame: CGRect.zero, style: .plain).then {
+    $0.separatorStyle = .none
   }
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  override func initialize() {
+    super.initialize()
     
-    self.view.addSubview(testView)
+    self.addSubview(self.tableView)
+  }
+  
+  override func setLayouts() {
+    super.setLayouts()
     
-    self.testView.snp.makeConstraints { (make) in
+    self.tableView.snp.makeConstraints { (make) in
       make.edges.equalToSuperview()
     }
   }
 }
+
