@@ -1,8 +1,8 @@
 //
-//  NewBookListWorker.swift
+//  DetialBookWorker.swift
 //  my-book-shelf
 //
-//  Created by Jam on 2019/12/08.
+//  Created by Jam on 2019/12/12.
 //  Copyright © 2019 Jam. All rights reserved.
 //
 
@@ -11,9 +11,9 @@ import ObjectMapper
 import RxSwift
 import SwiftyJSON
 
-struct NewBookListWorker {
-  static func getNewBookList() -> Observable<[BookModel]?> {
-    guard let url = URL(string: EndPoints.GetNewBookList.url) else {
+struct DetailBookWorker {
+  static func getDetailBookInfo(isbn13: String) -> Observable<BookModel?> {
+    guard let url = URL(string: EndPoints.GetBookDetail(isbn13).url) else {
       return .error(CustomErrors.endPointUrlNotFound)
     }
     
@@ -24,11 +24,11 @@ struct NewBookListWorker {
         switch response.result {
         case .success(let data):
           let json = JSON(data)
-          guard let books: [BookModel] = Mapper<BookModel>().mapArray(JSONObject: json["books"].object) else {
+          guard let book: BookModel = Mapper<BookModel>().map(JSONObject: json["book"].object) else {
             subscriber.onError(CustomErrors.objectNotFound)
             return
           }
-          subscriber.onNext(books)
+          subscriber.onNext(book)
           subscriber.onCompleted()
         case .failure(let error):
           subscriber.onError(CustomErrors.serverError(error))
@@ -41,3 +41,4 @@ struct NewBookListWorker {
     }
   }
 }
+

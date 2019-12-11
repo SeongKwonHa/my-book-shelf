@@ -8,4 +8,6 @@
 
 enum CustomErrors: Error {
   case objectNotFound
+  case endPointUrlNotFound
+  case serverError(Error)
 }

@@ -6,6 +6,8 @@
 //  Copyright © 2019 Jam. All rights reserved.
 //
 
+import UIKit
+
 class NewBookListRouter: NewBookListRouterProtocol {
   static func createModule() -> NewBookListViewController {
     let viewController = NewBookListViewController()
@@ -18,5 +20,10 @@ class NewBookListRouter: NewBookListRouterProtocol {
     interactor.presenter = presenter
     presenter.viewController = viewController
     return viewController
+  }
+  
+  func pushDeatilViewController(with book: BookModel, view: UIViewController?) {
+    let detailBookView = DetailBookRouter.createModule(book: book)
+    view?.navigationController?.pushViewController(detailBookView, animated: true)
   }
 }
