@@ -55,7 +55,7 @@ extension BookModel {
     return NewBookListWorker.getNewBookList()
   }
   
-  static func getDetailBookInfo(isbn13: String) -> Observable<BookModel?> {
-    return DetailBookWorker.getDetailBookInfo(isbn13: isbn13)
+  static func getBookDetailInfo(isbn13: String) -> Observable<BookModel?> {
+    return BookDetailWorker.getBookDetailInfo(isbn13: isbn13)
   }
 }

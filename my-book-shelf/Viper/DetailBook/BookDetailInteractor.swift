@@ -1,5 +1,5 @@
 //
-//  DetailBookInteractor.swift
+//  BookDetailInteractor.swift
 //  my-book-shelf
 //
 //  Created by Jam on 2019/12/07.
@@ -8,14 +8,14 @@
 
 import RxSwift
 
-class DetailBookInteractor: DetailBookInteractorProtocol {
-  var presenter: DetailBookPresenterProtocol?
+class BookDetailInteractor: BookDetailInteractorProtocol {
+  var presenter: BookDetailPresenterProtocol?
   
   private let disposeBag = DisposeBag()
   
   func getDetialBookInfo(isbn13: String) {
     BookModel
-      .getDetailBookInfo(isbn13: isbn13)
+      .getBookDetailInfo(isbn13: isbn13)
       .observeOn(MainScheduler.instance)
       .subscribe (onNext: { (book) in
         guard let book = book else { return }

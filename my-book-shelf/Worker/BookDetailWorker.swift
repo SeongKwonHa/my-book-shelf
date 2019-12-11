@@ -11,8 +11,8 @@ import ObjectMapper
 import RxSwift
 import SwiftyJSON
 
-struct DetailBookWorker {
-  static func getDetailBookInfo(isbn13: String) -> Observable<BookModel?> {
+struct BookDetailWorker {
+  static func getBookDetailInfo(isbn13: String) -> Observable<BookModel?> {
     guard let url = URL(string: EndPoints.GetBookDetail(isbn13).url) else {
       return .error(CustomErrors.endPointUrlNotFound)
     }

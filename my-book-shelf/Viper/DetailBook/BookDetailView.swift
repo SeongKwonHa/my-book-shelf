@@ -1,5 +1,5 @@
 //
-//  DetailBookView.swift
+//  BookDetailView.swift
 //  my-book-shelf
 //
 //  Created by Jam on 2019/12/07.
@@ -9,7 +9,7 @@
 import SnapKit
 import Then
 
-class DetailBookView: BaseView {
+class BookDetailView: BaseView {
   let testView = UIView()
   
   override func initialize() {

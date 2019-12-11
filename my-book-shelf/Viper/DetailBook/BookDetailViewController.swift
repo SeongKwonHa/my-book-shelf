@@ -1,5 +1,5 @@
 //
-//  DetailBookViewController.swift
+//  BookDetailViewController.swift
 //  my-book-shelf
 //
 //  Created by Jam on 2019/12/12.
@@ -9,27 +9,27 @@
 import SnapKit
 import Then
 
-class DetailBookViewController: BaseViewController {
-  var interactor: DetailBookInteractorProtocol?
-  var router: DetailBookRouterProtocol?
+class BookDetailViewController: BaseViewController {
+  var interactor: BookDetailInteractorProtocol?
+  var router: BookDetailRouterProtocol?
   
   private var book: BookModel?
   
-  private let detailBookView = DetailBookView()
+  private let bookDetailView = BookDetailView()
   
   private let activityIndicator = BaseActivityIndicator()
   
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.view.addSubview(self.detailBookView)
+    self.view.addSubview(self.bookDetailView)
     self.view.addSubview(self.activityIndicator)
     
     self.initNavigagation()
   }
   
   override func setupInitalConstraints() {
-    self.detailBookView.snp.makeConstraints { (make) in
+    self.bookDetailView.snp.makeConstraints { (make) in
       make.edges.equalToSuperview()
     }
     
@@ -43,11 +43,11 @@ class DetailBookViewController: BaseViewController {
   }
 }
 
-extension DetailBookViewController: DetailBookViewControllerProtocol {
+extension BookDetailViewController: BookDetailViewControllerProtocol {
   func display(book: BookModel) {
     self.book = book
     self.activityIndicator.stopAnimating()
-    self.detailBookView.configure()
+    self.bookDetailView.configure()
   }
 }
 

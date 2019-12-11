@@ -23,7 +23,7 @@ class NewBookListRouter: NewBookListRouterProtocol {
   }
   
   func pushDeatilViewController(with book: BookModel, view: UIViewController?) {
-    let detailBookView = DetailBookRouter.createModule(book: book)
+    let detailBookView = BookDetailRouter.createModule(book: book)
     view?.navigationController?.pushViewController(detailBookView, animated: true)
   }
 }
