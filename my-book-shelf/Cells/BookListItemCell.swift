@@ -70,6 +70,8 @@ class BookListItemCell: BaseTableViewCell {
       UILayoutPriority(rawValue: Constants.priceLabelCompressPriority),
       for: .horizontal
     )
+    
+    self.selectionStyle = .none
   }
   
   override func setLayouts() {

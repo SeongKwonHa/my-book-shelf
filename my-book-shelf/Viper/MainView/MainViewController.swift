@@ -35,11 +35,11 @@ final class MainViewController: BaseViewController {
   
   private func presentTabBarController() {
     let tabBarController = BaseTabBarController()
-    let newBookListView = NewBookListRouter.createModule()
-    let searchBookInfoView = SearchBookInfoView()
-    newBookListView.tabBarItem = BaseTabBarItem(title: "New", image: nil, selectedImage: nil)
-    searchBookInfoView.tabBarItem = BaseTabBarItem(title: "Search", image: nil, selectedImage: nil)
-    tabBarController.viewControllers = [newBookListView, searchBookInfoView]
+    let newBookListViewController = BaseNavigationController(rootViewController: NewBookListRouter.createModule())
+    let searchBookInfoViewController = BaseNavigationController(rootViewController: SearchBookInfoView())
+    newBookListViewController.tabBarItem = BaseTabBarItem(title: "New", image: nil, selectedImage: nil)
+    searchBookInfoViewController.tabBarItem = BaseTabBarItem(title: "Search", image: nil, selectedImage: nil)
+    tabBarController.viewControllers = [newBookListViewController, searchBookInfoViewController]
     
     self.present(tabBarController, animated: true, completion: nil)
   }

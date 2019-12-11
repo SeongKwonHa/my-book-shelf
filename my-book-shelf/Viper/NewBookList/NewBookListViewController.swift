@@ -19,21 +19,31 @@ class NewBookListViewController: BaseViewController {
     $0.tableView.register(cellType: BookListItemCell.self)
   }
   
+  private let activityIndicator = BaseActivityIndicator()
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     
     self.view.addSubview(self.newBookListView)
+    self.view.addSubview(self.activityIndicator)
+    
+    self.initNavigagation()
     self.initTableView()
     self.interactor?.getBookList()
   }
   
   override func setupInitalConstraints() {
     self.newBookListView.snp.makeConstraints { (make) in
-      make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-      make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-      make.leading.equalToSuperview()
-      make.trailing.equalToSuperview()
+      make.edges.equalToSuperview()
     }
+    
+    self.activityIndicator.snp.makeConstraints { (make) in
+      make.center.equalToSuperview()
+    }
+  }
+  
+  private func initNavigagation() {
+    self.title = "New"
   }
   
   private func initTableView() {
@@ -45,6 +55,7 @@ class NewBookListViewController: BaseViewController {
 extension NewBookListViewController: NewBookListViewControllerProtocol {
   func display(books: [BookModel]) {
     self.books = books
+    self.activityIndicator.stopAnimating()
     self.newBookListView.tableView.reloadData()
   }
 }
