@@ -13,8 +13,6 @@ class BookDetailViewController: BaseViewController {
   var interactor: BookDetailInteractorProtocol?
   var router: BookDetailRouterProtocol?
   
-  private var book: BookModel?
-  
   private let bookDetailView = BookDetailView()
   
   private let activityIndicator = BaseActivityIndicator()
@@ -22,10 +20,15 @@ class BookDetailViewController: BaseViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    self.edgesForExtendedLayout = UIRectEdge.bottom
     self.view.addSubview(self.bookDetailView)
     self.view.addSubview(self.activityIndicator)
     
     self.initNavigagation()
+    self.initTextViee()
+    
+    self.interactor?.getDetialBookInfo()
+    self.interactor?.getMemo()
   }
   
   override func setupInitalConstraints() {
@@ -41,13 +44,29 @@ class BookDetailViewController: BaseViewController {
   private func initNavigagation() {
     self.title = "Book Detail"
   }
+  
+  private func initTextViee() {
+    self.bookDetailView.memoView.delegate = self
+  }
 }
 
 extension BookDetailViewController: BookDetailViewControllerProtocol {
   func display(book: BookModel) {
-    self.book = book
     self.activityIndicator.stopAnimating()
-    self.bookDetailView.configure()
+    self.bookDetailView.configure(book: book)
+  }
+  
+  func display(memo: String) {
+    self.bookDetailView.configure(memo: memo)
+  }
+  
+  func display(error: Error) {
+    
   }
 }
 
+extension BookDetailViewController: UITextViewDelegate {
+  func textViewDidEndEditing(_ textView: UITextView) {
+    self.interactor?.updateMemo(with: textView.text)
+  }
+}

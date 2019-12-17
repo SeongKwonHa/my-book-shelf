@@ -30,5 +30,6 @@ class BaseNavigationController: UINavigationController {
   }
 
   func initialize() {
+    self.view.backgroundColor = .white
   }
 }

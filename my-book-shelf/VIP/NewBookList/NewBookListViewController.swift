@@ -13,7 +13,7 @@ class NewBookListViewController: BaseViewController {
   var interactor: NewBookListInteractorProtocol?
   var router: NewBookListRouterProtocol?
   
-  private var books: [BookModel] = [BookModel()]
+  private var books: [BookModel] = []
   
   private let newBookListView = NewBookListView().then {
     $0.tableView.register(cellType: BookListItemCell.self)
@@ -58,6 +58,10 @@ extension NewBookListViewController: NewBookListViewControllerProtocol {
     self.activityIndicator.stopAnimating()
     self.newBookListView.tableView.reloadData()
   }
+  
+  func display(error: Error) {
+    
+  }
 }
 
 extension NewBookListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -77,5 +81,9 @@ extension NewBookListViewController: UITableViewDelegate, UITableViewDataSource 
     let cell: BookListItemCell = tableView.dequeueReusableCell(for: indexPath)
     cell.configure(with: self.books[indexPath.row])
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    self.router?.pushDeatilViewController(with: self.books[indexPath.row], view: self)
   }
 }

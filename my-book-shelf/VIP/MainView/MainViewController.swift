@@ -36,7 +36,7 @@ final class MainViewController: BaseViewController {
   private func presentTabBarController() {
     let tabBarController = BaseTabBarController()
     let newBookListViewController = BaseNavigationController(rootViewController: NewBookListRouter.createModule())
-    let searchBookInfoViewController = BaseNavigationController(rootViewController: SearchBookInfoView())
+    let searchBookInfoViewController = BaseNavigationController(rootViewController: SearchBookInfoRouter.createModule())
     newBookListViewController.tabBarItem = BaseTabBarItem(title: "New", image: nil, selectedImage: nil)
     searchBookInfoViewController.tabBarItem = BaseTabBarItem(title: "Search", image: nil, selectedImage: nil)
     tabBarController.viewControllers = [newBookListViewController, searchBookInfoViewController]

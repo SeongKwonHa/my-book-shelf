@@ -5,6 +5,7 @@
 //  Created by Jam on 2019/12/07.
 //  Copyright © 2019 Jam. All rights reserved.
 //
+
 import RxSwift
 
 class NewBookListInteractor: NewBookListInteractorProtocol {
@@ -16,9 +17,11 @@ class NewBookListInteractor: NewBookListInteractorProtocol {
     BookModel
       .getNewBookList()
       .observeOn(MainScheduler.instance)
-      .subscribe (onNext: { (books) in
+      .subscribe (onNext: { [weak self] (books) in
         guard let books = books else { return }
-        self.presenter?.display(books: books)
+        self?.presenter?.display(books: books)
+      }, onError: { [weak self] error in
+        self?.presenter?.display(error: error)
       }).disposed(by: self.disposeBag)
   }
 }

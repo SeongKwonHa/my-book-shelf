@@ -12,4 +12,12 @@ class BookDetailPresenter: BookDetailPresenterProtocol {
   func display(book: BookModel) {
     self.viewController?.display(book: book)
   }
+  
+  func display(memo: String) {
+    self.viewController?.display(memo: memo)
+  }
+  
+  func display(error: Error) {
+    self.viewController?.display(error: error)
+  }
 }

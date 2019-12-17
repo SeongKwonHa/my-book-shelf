@@ -20,12 +20,12 @@ struct BookModel {
   // get on only detail
   var authors: String = ""
   var publisher: String = ""
+  var language: String = ""
   var isbn10: String = ""
   var pages: String = ""
   var year: String = ""
   var rating: String = ""
   var desc: String = ""
-  var pdf: [String: String] = [:]
 }
 
 extension BookModel: Mappable {
@@ -36,6 +36,7 @@ extension BookModel: Mappable {
     isbn13      <- map["isbn13"]
     title       <- map["title"]
     subTitle    <- map["subtitle"]
+    language    <- map["language"]
     price       <- map["price"]
     imageUrl    <- map["image"]
     url         <- map["url"]
@@ -46,7 +47,6 @@ extension BookModel: Mappable {
     year        <- map["year"]
     rating      <- map["rating"]
     desc        <- map["desc"]
-    pdf         <- map["pdf"]
   }
 }
 
@@ -57,5 +57,11 @@ extension BookModel {
   
   static func getBookDetailInfo(isbn13: String) -> Observable<BookModel?> {
     return BookDetailWorker.getBookDetailInfo(isbn13: isbn13)
+  }
+  
+  static func getSearchData(
+    with keyword: String,
+    page: String) -> Observable<[BookModel]?> {
+    return SearchBookInfoWorker.getSearchData(with: keyword, page: page)
   }
 }

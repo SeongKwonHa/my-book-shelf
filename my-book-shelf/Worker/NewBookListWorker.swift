@@ -14,26 +14,28 @@ import SwiftyJSON
 struct NewBookListWorker {
   static func getNewBookList() -> Observable<[BookModel]?> {
     guard let url = URL(string: EndPoints.GetNewBookList.url) else {
-      return .error(CustomErrors.endPointUrlNotFound)
+      return .error(CustomError.endPointUrlNotFound)
     }
     
     return Observable.create { (subscriber) -> Disposable in
-      let req = Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: [:])
-      .validate(statusCode: 200..<300)
-      .responseJSON{ response in
-        switch response.result {
-        case .success(let data):
-          let json = JSON(data)
-          guard let books: [BookModel] = Mapper<BookModel>().mapArray(JSONObject: json["books"].object) else {
-            subscriber.onError(CustomErrors.objectNotFound)
-            return
+      let req = Alamofire
+        .request(url, method: .get, encoding: JSONEncoding.default, headers: [:])
+        .validate(statusCode: 200..<300)
+        .responseJSON { response in
+          switch response.result {
+          case .success(let data):
+            let json = JSON(data)
+            guard let books: [BookModel] = Mapper<BookModel>()
+              .mapArray(JSONObject: json["books"].object) else {
+                subscriber.onError(CustomError.objectNotFound)
+                return
+            }
+            subscriber.onNext(books)
+            subscriber.onCompleted()
+          case .failure(let error):
+            subscriber.onError(CustomError.serverError(error))
           }
-          subscriber.onNext(books)
-          subscriber.onCompleted()
-        case .failure(let error):
-          subscriber.onError(CustomErrors.serverError(error))
         }
-      }
       
       return Disposables.create {
         req.cancel()

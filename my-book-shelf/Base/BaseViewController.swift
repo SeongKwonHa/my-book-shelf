@@ -21,6 +21,7 @@ class BaseViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.edgesForExtendedLayout =  UIRectEdge.init(rawValue: 0)
     self.view.backgroundColor = .white
     self.view.setNeedsUpdateConstraints() // call updateViewConstraints
   }

@@ -6,7 +6,7 @@
 //  Copyright © 2019 Jam. All rights reserved.
 //
 
-enum CustomErrors: Error {
+enum CustomError: Error {
   case objectNotFound
   case endPointUrlNotFound
   case serverError(Error)

@@ -11,18 +11,24 @@ protocol BookDetailViewControllerProtocol: class {
   var router: BookDetailRouterProtocol? { get set }
   
   func display(book: BookModel)
+  func display(memo: String)
+  func display(error: Error)
 }
 
 protocol BookDetailPresenterProtocol: class {
   var viewController: BookDetailViewControllerProtocol? { get set }
   
   func display(book: BookModel)
+  func display(memo: String)
+  func display(error: Error)
 }
 
 protocol BookDetailInteractorProtocol: class {
   var presenter: BookDetailPresenterProtocol? { get set }
   
-  func getDetialBookInfo(isbn13: String)
+  func getDetialBookInfo()
+  func getMemo()
+  func updateMemo(with text: String)
 }
 
 protocol BookDetailRouterProtocol: class {

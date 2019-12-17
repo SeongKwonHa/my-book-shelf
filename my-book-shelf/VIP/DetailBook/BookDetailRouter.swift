@@ -16,6 +16,7 @@ class BookDetailRouter: BookDetailRouterProtocol {
     viewController.interactor = interactor
     viewController.router = router
     interactor.presenter = presenter
+    interactor.book = book
     presenter.viewController = viewController
     return viewController
   }

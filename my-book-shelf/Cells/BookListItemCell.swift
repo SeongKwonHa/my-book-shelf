@@ -26,7 +26,7 @@ class BookListItemCell: BaseTableViewCell {
   }
   
   private var thumbView = UIImageView().then {
-    $0.contentMode = .scaleAspectFill
+    $0.contentMode = .scaleAspectFit
   }
   
   private var middleStackView = UIStackView().then {
@@ -66,11 +66,6 @@ class BookListItemCell: BaseTableViewCell {
     self.middleStackView.addArrangedSubview(self.titleLabel)
     self.middleStackView.addArrangedSubview(self.subTitleLabel)
     
-    self.priceLabel.setContentCompressionResistancePriority(
-      UILayoutPriority(rawValue: Constants.priceLabelCompressPriority),
-      for: .horizontal
-    )
-    
     self.selectionStyle = .none
   }
   
@@ -83,6 +78,11 @@ class BookListItemCell: BaseTableViewCell {
       make.bottom.equalToSuperview().inset(Constants.containerLeading)
       make.trailing.equalToSuperview().inset(Constants.containerTrailing)
     }
+    
+    self.priceLabel.setContentCompressionResistancePriority(
+      UILayoutPriority(rawValue: Constants.priceLabelCompressPriority),
+      for: .horizontal
+    )
     
     self.thumbView.snp.makeConstraints { (make) in
       make.width.equalTo(Constants.thumbImageSide)

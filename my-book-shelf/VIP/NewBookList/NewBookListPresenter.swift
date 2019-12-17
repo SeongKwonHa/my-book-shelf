@@ -12,4 +12,8 @@ class NewBookListPresenter: NewBookListPresenterProtocol {
   func display(books: [BookModel]) {
     self.viewController?.display(books: books)
   }
+  
+  func display(error: Error) {
+    self.viewController?.display(error: error)
+  }
 }
